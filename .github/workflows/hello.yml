@@ -27,7 +27,7 @@ jobs:
         if: github.event.inputs.sha
         run: echo '::set-env name=SHA::${{ github.event.inputs.sha }}'
       - name: Setup phase
-        if: github.event.inputs.phase == prod
+        if: github.event.inputs.phase == 'prod'
         run: echo '::set-env name=PHASE::${{ github.event.input.phase }}'
       - name: Hello
         env:
