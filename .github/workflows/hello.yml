@@ -28,7 +28,7 @@ jobs:
         run: echo '::set-env name=SHA::${{ github.event.inputs.sha }}'
       - name: Setup phase
         if: github.event.inputs.phase == 'prod'
-        run: echo '::set-env name=PHASE::${{ github.event.input.phase }}'
+        run: echo '::set-env name=PHASE::${{ github.event.inputs.phase }}'
       - name: Hello
         env:
           SHA_REF: ${{github.sha}}__${{github.ref}}
