@@ -26,7 +26,7 @@ jobs:
       - name: Setup defaults
         run: |
           echo $SHA
-          $SHA=$([ $SHA ] || echo '${{ github.sha }})'
+          $SHA=$([ $SHA ] || echo '${{ github.sha }}')
           echo $PHASE
           $PHASE=$([ $PHASE = 'prod' ] && echo 'prod' || echo 'stag')
       - name: Hello
