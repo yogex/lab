@@ -5,7 +5,7 @@ on:
       name:
         description: 'sha'
         required: true
-        default: ${{ github.sha }}
+        default: '123456'
       home:
         description: 'location'
         required: false
