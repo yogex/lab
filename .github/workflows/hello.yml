@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SHA: ${{ github.sha }}
-      PHASE: ${{ github.phase }}
+      PHASE: stag
     steps:
       - name: Setup SHA
         if: github.event.inputs.sha
