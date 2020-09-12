@@ -3,18 +3,25 @@ on:
   workflow_dispatch:
     inputs:
       name:
-        description: 'sha'
+        description: 'name'
         required: true
-        default: '123456'
+        default: 'Otong Surotong'
       home:
         description: 'location'
         required: false
-        
+      sha:
+        description: 'SHA'
+        required: false
+      phase:
+        description: 'stag/prod'
+        required: false  
+
 jobs:
   say_hello:
     runs-on: ubuntu-latest
     env:
-      OTONG: ini versi ${{github.sha}}
+      SHA: ${SHA:-${{ github.sha }}}
+      PHASE: $([ ${{ github.event.inputs.phase }} = prod ] && echo "prod" || echo "stag")
     steps:
       - name: Hello
         env:
@@ -24,4 +31,6 @@ jobs:
             echo "${{github.ref}}"
             echo "Hello ${{ github.event.inputs.name }}!"
             echo "- in ${{ github.event.inputs.home }}!"
-            echo $OTONG
+            echo $SHA
+            echo $PHASE
+            
