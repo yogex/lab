@@ -20,16 +20,17 @@ jobs:
   say_hello:
     runs-on: ubuntu-latest
     env:
-      SHA: ${{ github.event.inputs.sha }}
-      PHASE: ${{ github.event.inputs.phase }}
+      SHA: ${{ github.sha }}
+      PHASE: ${{ github.phase }}
     steps:
-      - name: Setup defaults
-        run: |
-          echo $SHA
-          ${SHA:=$GITHUB_SHA}
-          echo $PHASE
-          $PHASE=$([ $PHASE = 'prod' ] && echo 'prod' || echo 'stag')
-        shell: bash
+      - name: Setup SHA
+        if: github.event.inputs.sha
+        env:
+          SHA: ${{ github.sha }}
+      - name: Setup phase
+        if: github.event.inputs.phase
+        env:
+          PHASE: github.event.inputs.phase        
       - name: Hello
         env:
           SHA_REF: ${{github.sha}}__${{github.ref}}
