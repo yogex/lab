@@ -9,8 +9,7 @@ on:
       home:
         description: 'location'
         required: false
-        default: {{ github.sha}}
-
+        
 jobs:
   say_hello:
     runs-on: ubuntu-latest
