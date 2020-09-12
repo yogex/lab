@@ -13,6 +13,8 @@ on:
 jobs:
   say_hello:
     runs-on: ubuntu-latest
+    env:
+      OTONG: ini versi ${{github.sha}}
     steps:
       - name: Hello
         env:
@@ -22,3 +24,4 @@ jobs:
             echo "${{github.ref}}"
             echo "Hello ${{ github.event.inputs.name }}!"
             echo "- in ${{ github.event.inputs.home }}!"
+            echo $OTONG
