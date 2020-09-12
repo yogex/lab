@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
     inputs:
       name:
-        description: 'Person to greet'
+        description: 'sha'
         required: true
-        default: 'Mona the Octocat'
+        default: ${{ github.sha }}
       home:
         description: 'location'
         required: false
