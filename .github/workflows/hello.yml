@@ -20,8 +20,10 @@ jobs:
   say_hello:
     runs-on: ubuntu-latest
     env:
-      SHA: ${SHA:-${{ github.sha }}}
-      PHASE: $([ ${{ github.event.inputs.phase }} = prod ] && echo "prod" || echo "stag")
+      INPUT_SHA: ${{ github.event.inputs.sha }}
+      INPUT_PHASE: ${{ github.event.inputs.phase }}
+      SHA: $([ $INPUT_SHA ] || ${{ github.sha }})
+      PHASE: $([ $INPUT_PHASE = prod ] && echo "prod" || echo "stag")
     steps:
       - name: Hello
         env:
