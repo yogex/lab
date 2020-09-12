@@ -15,8 +15,11 @@ jobs:
   say_hello:
     runs-on: ubuntu-latest
     steps:
-    - run: |
-        echo ${{github.sha}}
-        echo ${{github.ref}}
-        echo "Hello ${{ github.event.inputs.name }}!"
-        echo "- in ${{ github.event.inputs.home }}!"
+      - name: Hello
+        env:
+          SHA_REF: ${{github.sha}}__${{github.ref}}
+        run: |
+            echo "${{github.sha}}"
+            echo "${{github.ref}}"
+            echo "Hello ${{ github.event.inputs.name }}!"
+            echo "- in ${{ github.event.inputs.home }}!"
