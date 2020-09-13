@@ -20,7 +20,7 @@ jobs:
         git diff --name-only HEAD^ | cut -d/ -f1 | sort -u | tr '\n' ',' | sed 's/,$/\n/' > projects
         cat projects
     - id: file_changes
-      uses: trilom/file-changes-action@v1.2.3
+      uses: trilom/file-changes-action
     - run: | 
         echo ${{ steps.file-change.outputs.files }}
         echo ${{ steps.file-change.outputs.files }} | sort -u | tr '\n' ',' | sed 's/,$/\n/'
