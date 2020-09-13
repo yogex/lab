@@ -40,4 +40,15 @@ jobs:
           echo $SHA
           echo $PHASE
         shell: bash
-            
+  
+  say_goodbye:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test env var different jobs
+        run: |
+          echo "${{github.sha}}"
+          echo "${{github.ref}}"
+          echo "Hello ${{ github.event.inputs.name }}!"
+          echo "- in ${{ github.event.inputs.home }}!"
+          echo $SHA
+          echo $PHASE
