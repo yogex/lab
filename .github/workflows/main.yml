@@ -24,9 +24,7 @@ jobs:
             --header "Accept: application/vnd.github.v3+json" \
             --header "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             --url https://api.github.com/repos/${{ github.repository }}/actions/workflows/hello.yml/dispatches \
-            --data '{
-              "ref":"master"
-              }'
+            --data '{ "ref":"master" }'
         
       
       
