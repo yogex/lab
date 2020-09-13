@@ -1,0 +1,55 @@
+name: Hello
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'name'
+        required: true
+        default: 'Otong Surotong'
+      home:
+        description: 'location'
+        required: false
+      sha:
+        description: 'SHA'
+        required: false
+      phase:
+        description: 'stag/prod'
+        required: false  
+
+jobs:
+  say_hello:
+    needs: [say_goodbye]
+    runs-on: ubuntu-latest
+    env:
+      SHA: ${{ github.sha }}
+      PHASE: 'stag'
+    steps:
+      - name: Setup SHA
+        if: github.event.inputs.sha
+        run: echo '::set-env name=SHA::${{ github.event.inputs.sha }}'
+      - name: Setup phase
+        if: github.event.inputs.phase == 'prod'
+        run: echo '::set-env name=PHASE::${{ github.event.inputs.phase }}'
+      - name: Hello
+        env:
+          SHA_REF: ${{github.sha}}__${{github.ref}}
+        run: |
+          echo "${{github.sha}}"
+          echo "${{github.ref}}"
+          echo "Hello ${{ github.event.inputs.name }}!"
+          echo "- in ${{ github.event.inputs.home }}!"
+          echo $SHA
+          echo $PHASE
+        shell: bash
+  
+  say_goodbye:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test env var different jobs
+        run: |
+          echo "${{github.sha}}"
+          echo "${{github.ref}}"
+          echo "Hello ${{ github.event.inputs.name }}!"
+          echo "- in ${{ github.event.inputs.home }}!"
+          echo $SHA
+          echo $PHASE
