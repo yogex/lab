@@ -17,3 +17,4 @@ jobs:
     - run: |
         echo "Hello ${{ github.event.inputs.name }}!"
         echo "- in ${{ github.event.inputs.home }}!"
+        git diff --name-only HEAD^ | cut -d/ -f1 | sort -u | tr '\n' ',' | sed 's/,$/\n/' 
