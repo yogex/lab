@@ -20,14 +20,16 @@ jobs:
       - name: Your target step
         if: steps.check_folder.outputs.has_changes == 'Yes'
         run: echo "Hello world!" 
-      - run: |
+      - name: test git diff
+        run: |
           echo "Hello ${{ github.event.inputs.name }}!"
           git diff --name-only HEAD^ | cut -d/ -f1 | sort -u | tr '\n' ',' | sed 's/,$/\n/' > projects
           cat projects
       - id: file_changes
         name: File Changes Action
         uses: trilom/file-changes-action@v1.2.4
-      - run: | 
+      - name: file output
+        run: | 
           echo ${{ steps.file-change.outputs.files }}
           echo ${{ steps.file-change.outputs.files }} | sort -u | tr '\n' ',' | sed 's/,$/\n/'
         
