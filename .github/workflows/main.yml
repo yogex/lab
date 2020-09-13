@@ -1,4 +1,4 @@
-name: Test manually triggered workflow
+name: Main
 on:
   workflow_dispatch:
     inputs:
@@ -6,17 +6,13 @@ on:
         description: 'Person to greet'
         required: true
         default: 'Mona the Octocat'
-      home:
-        description: 'location'
-        required: false
-
+      
 jobs:
   say_hello:
     runs-on: ubuntu-latest
     steps:
     - run: |
         echo "Hello ${{ github.event.inputs.name }}!"
-        echo "- in ${{ github.event.inputs.home }}!"
         git diff --name-only HEAD^ | cut -d/ -f1 | sort -u | tr '\n' ',' | sed 's/,$/\n/' > projects
         cat projects
     - id: file_changes
