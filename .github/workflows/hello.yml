@@ -18,6 +18,7 @@ on:
 
 jobs:
   say_hello:
+    needs: [say_goodbye]
     runs-on: ubuntu-latest
     env:
       SHA: ${{ github.sha }}
