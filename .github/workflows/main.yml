@@ -13,10 +13,10 @@ jobs:
           # ! It is important option beacuse the action will take diff between HEAD and HEAD^
           fetch-depth: 2
       - name: test git diff
-        id:
+        id: get-services
         run: |
           echo "Hello ${{ github.event.inputs.name }}!"
-          echo "::set-env name=SERVICES::$(echo $(git diff --name-only HEAD^ | cut -d/ -f1 | sort -u | tr '\n' ',' | sed 's/,$/\n/'))
+          echo "::set-env name=SERVICES::$(echo $(git diff --name-only HEAD^ | cut -d/ -f1 | sort -u | tr '\n' ',' | sed 's/,$/\n/'))"
           
       - name: dispatch event
         run: |
