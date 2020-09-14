@@ -27,15 +27,9 @@ jobs:
             --header "Authorization: token ${{ secrets.ACCESS_TOKEN }}" \
             --url https://api.github.com/repos/${{ github.repository }}/actions/workflows/hello.yml/dispatches \
             --data '{ "ref":"${{ github.ref }}" }'
-      - name: Workflow Dispatch
-        # You may pin to the exact commit or the version.
-        # uses: benc-uk/workflow-dispatch@4c044c1613fabbe5250deadc65452d54c4ad4fc7
-        uses: benc-uk/workflow-dispatch@v1.1
-        with:
-          # Name or ID of workflow to run
-          workflow: hello.yml
-          # GitHub token with repo write access, can NOT use secrets.GITHUB_TOKEN, see readme
-          token: ${{ secrets.ACCESS_TOKEN }}
+      - name: testing output
+        run: echo $SERVICES
+        
           
         
       
