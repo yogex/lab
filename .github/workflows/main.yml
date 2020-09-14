@@ -20,7 +20,7 @@ jobs:
           
       - name: dispatch event
         run: |
-          cat projects
+          echo $SERVICES
           curl \
             --request POST \
             --header "Accept: application/vnd.github.v3+json" \
