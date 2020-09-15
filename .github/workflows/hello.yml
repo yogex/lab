@@ -25,7 +25,7 @@ jobs:
       PHASE: 'stag'
     steps:
       - name: Setup SHA
-        if: github.event.inputs.sha
+        if: github.event.inputs.sha != ''
         run: echo '::set-env name=SHA::${{ github.event.inputs.sha }}'
       - name: Setup phase
         if: github.event.inputs.phase == 'prod'
