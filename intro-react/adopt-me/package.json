@@ -4,11 +4,14 @@
   "description": "Pet adoption for react intro",
   "main": "index.js",
   "scripts": {
-    "format": "prettier --write \"src/**/*.{js,jsx}\""
+    "format": "prettier --write \"src/**/*.{js,jsx}\"",
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
   },
   "author": "Benedictus Yoga",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^7.28.0",
+    "eslint-config-prettier": "^8.3.0",
     "prettier": "^2.3.0"
   }
 }
